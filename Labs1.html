@@ -17,9 +17,45 @@ Musician.prototype.play = function(peice){
 
 /*Part 3*/
 
-function filterWords(array){
-	
+function filteredWords(sentence, bannedWords){
+	const res = sentence.split(" ");
+	let array = [];
 
+	for(let i = 0; i < res.length; i++){
+		for(let j=0;j < bannedWords.length; j++){
+			if(res[i]===bannedWords[j]){
+				array.push(i);
+			}
+		}	
+	}
+
+	for(let i = 0; i < array.length; i++){
+		let value = array[i];
+		res[value] = "***";
+	}
+
+	let output = res.join(" ");
+	return output;
 }
 
-console.log("This is a ncice house ".filterWords(['house, nice']));
+console.log("This is a nice house ".filterWords(['house, nice']));
+
+/*Part 4*/
+function isWeekend(){
+	const todayDate = new Date();
+	const day = todayDate.getDay();
+}
+
+const todayDate = new Date();
+const day = todayDate.getDay();
+
+//document.write(day);
+
+switch(day){
+    case 0: document.write("Weekend!"); break;
+    case 6: document.write("Weekend!"); break;
+    default: document.write("Weekday");
+}
+
+/*Part 5*/
+
