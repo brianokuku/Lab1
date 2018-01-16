@@ -1,0 +1,25 @@
+/* Part 1*/
+
+function Musician(name){
+	this.name = name;
+}
+
+var Violinist = new Musician("Violinist");
+
+var Pianist = new Musician("Pianist"); 
+
+/*Part 2*/
+
+Musician.prototype.play = function(peice){
+	return "this.name +" is now playing "+peice;
+}
+
+
+/*Part 3*/
+
+function filterWords(array){
+	
+
+}
+
+console.log("This is a ncice house ".filterWords(['house, nice']));
