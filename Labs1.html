@@ -44,18 +44,20 @@ console.log("This is a nice house ".filterWords(['house, nice']));
 function isWeekend(){
 	const todayDate = new Date();
 	const day = todayDate.getDay();
+	
+	let days = {
+		0: "weekend",
+		1: "weekday",
+		2: "weekday",
+		3: "weekday",
+		4: "weekday",
+		5: "weekday",
+		6: "weekend"
+	};
+	
+	return days[day];
 }
 
-const todayDate = new Date();
-const day = todayDate.getDay();
-
-//document.write(day);
-
-switch(day){
-    case 0: document.write("Weekend!"); break;
-    case 6: document.write("Weekend!"); break;
-    default: document.write("Weekday");
-}
 
 /*Part 5*/
 
