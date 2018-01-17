@@ -61,3 +61,5 @@ function isWeekend(){
 
 /*Part 5*/
 
+const applyCoupon = category => discount => price => `${price-price*discount}`;
+applyCoupon("food")(0.1)(33);
