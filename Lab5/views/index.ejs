@@ -5,23 +5,32 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    
-    <p>Welcome to <%= show_data[0].name %></p>
-    <p>Welcome to <%= show_data[1].name %></p>
 
     <table>
       <tr>
-        <th>id</th>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>City</th>
-        <th>Zip Code</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Zip code</th>
+        <td>id</td>
+        <td>Name</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>City</td>
+        <td>Zip Code</td>
+        <td>Latitude</td>
+        <td>Longitude</td>
+        <td>Zip code</td>
       </tr>
-
+      <% show_data.forEach(function(user){ %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.address.city %></td>
+        <td><%= user.address.zipcode %></td>
+        <td><%= user.address.geo.lat %></td>
+        <td><%= user.address.geo.lng %></td>
+        <td><%= user.address.zipcode %></td>
+      </tr>
+      <% })%>
     </table>
   </body>
 </html>
