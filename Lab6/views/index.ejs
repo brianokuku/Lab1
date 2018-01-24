@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The users</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+
+    <table>
+      <tr>
+        <td>id</td>
+        <td>Name</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>City</td>
+        <td>Zip Code</td>
+        <td>Latitude</td>
+        <td>Longitude</td>
+        <td>Zip code</td>
+      </tr>
+      <% show_data.forEach(function(user){ %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.address.city %></td>
+        <td><%= user.address.zipcode %></td>
+        <td><%= user.address.geo.lat %></td>
+        <td><%= user.address.geo.lng %></td>
+        <td><%= user.address.zipcode %></td>
+      </tr>
+      <% })%>
+    </table>
+  </body>
+</html>
