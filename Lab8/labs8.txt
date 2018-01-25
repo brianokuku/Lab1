@@ -1,0 +1,85 @@
+1. Show all the documents in a collection
+db.homework8.find()
+
+2. Show the selected projections the _id
+db.homework8.find({}, {name:1, restaurant_id:1, cuisine:1, district:1})
+
+3. Show the selected projections without the _id
+db.homework8.find({}, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+4. Question 4
+db.homework8.find({}, {name:1, restaurant_id:1, district:1, "address.zipcode":1, _id:0})
+
+5. Find all documents where district is Bronx
+db.homework8.find({district: {$eq: "Bronx"}})
+
+6. Find first five documents in Bronx
+db.homework8.find({district: {$eq: "Bronx"}}).limit(5)
+
+7. Find the documents from Bronx displayed between results 5-10
+db.homework8.find({district: {$eq: "Bronx"}}).skip(5).limit(5)
+
+8.Restaurants who's latitude value is less than -95.754168 values query less than (the second one)
+db.homework8.find( { "address.coord.1": { $lt: -95.754168 } } )
+
+db.homework8.find( { "address.coord": [ -73.8228302, 40.8268764 ] } )
+
+9.Restaurants that do not prepare American cuisine and their grade score is more than 70 and latitude is less than -65.754168
+db.homework8.find( { $and: [{cuisine: 'American'}, {'grades.score': {$gt: 70}}, {"address.coord.1": {$lt: -65.754168}} ] } )
+
+db.homework8.find( { 'grades.score': { $lte: 20 } } )
+
+10. Restaurant id, name, district and cuisine for the ones containing Wil as first three letters of their names
+db.homework8.find({name: {$regex : /^Wil/}}, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+(query), (projection)
+
+11. Restaurant id, name, district and cuisine for the ones containing ces as last three letters of their names
+db.homework8.find({ name: {$regex: /ces$/, $options: 'm' } }, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0}) - For ones ending with ces
+
+12. Restaurant id, name, district and cuisine for the ones containing Reg as letters in their names
+db.homework8.find({ name: {$regex: 'Reg', $options: 'm' } }, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+13. Restaurants belonging to the District Bronx and have American or Chinese dishes
+db.homework8.find( {$and: [{ $or: [{cuisine: 'American'}, {cuisine: 'Chinese'}]}, {district: 'Bronx'}] })
+
+14. Restaurant id, name, district and cuisine for the ones belonging in Staten island, Queens, Bronx or Brooklyn
+db.homework8.find( { $or: [{district: 'Bronx'}, {district: 'Staten Island'}, {district: 'Queens'}, {district: 'Brooklyn'} ] }, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+15. Restaurant id, name, district and cuisine for the ones not belonging in Staten island, Queens, Bronx or Brooklyn
+db.homework8.find( { $nor: [{district: 'Bronx'}, {district: 'Staten Island'}, {district: 'Queens'}, {district: 'Brooklyn'} ] }, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+16. Restaurant id, name, district and cuisine for the ones with a score not more than 10
+db.homework8.find( {  "grades.score": { $lt: 10 }  }, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0})
+
+17. Restaurant id, name, address and geographical location for those restaurants where latitude (2nd coordinates) contain values >42 and <52
+db.homework8.find( {$and: [{ 'address.coord.1': { $lte: 52 } }, { 'address.coord.1': { $gte: 42 } }]}, {name:1, restaurant_id:1, address:1, district:1, "address.coord":1 ,_id:0})
+
+18. Get data and arrange them in ascending order of the names
+db.homework8.find({}, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0}).sort({'name':1})
+
+db.homework8.find({}, {}).sort({'name':1})
+
+19. Get data and arrange them in descending order of the names
+db.homework8.find({}, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0}).sort({'name':-1})
+
+db.homework8.find({}, {}).sort({'name':-1})
+
+20.Arrange the names of the cuisines in ascending order and then arrange district in descending order
+db.homework8.find({}, {name:1, restaurant_id:1, cuisine:1, district:1, _id:0}).sort({'district':-1}).sort({'cuisine':1})  
+
+(Starts with the last sort followed by the second last one)
+
+21. Query to check if all the addresses contain a street or not
+db.homework8.find({'address.street':  {$exists: true}})
+
+22. Query to get coord values that are double
+db.homework8.find({'address.coord':  { $type: 'double' }})
+
+23. Query for the name, district, longitude, latitude and cuisine for the ones with the word mad as the first three letters of its name
+db.homework8.find({name: {$regex : /^Mad/}}, {name:1, 'address.coord':1, cuisine:1, district:1, _id:0})
+
+
+
+
+
